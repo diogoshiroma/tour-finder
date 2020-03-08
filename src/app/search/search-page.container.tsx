@@ -2,7 +2,7 @@ import React from 'react';
 import { Residence } from '../../model/entities';
 import { SearchPage } from './search-page.component';
 import { datasourceResidences, populateResidences } from '../data';
-import { parseDate, matchShortDate, isValidDate } from '../../model';
+import { parseDate, matchShortDate, isValidDate, hasBusyDates, containsBusyDay } from '../../model';
 
 export const SearchPageContainer = () => {
   const [populatedResidences, setPopulatedResidences] = React.useState(false);
@@ -89,18 +89,6 @@ export const SearchPageContainer = () => {
     );
   };
 
-  const containsBusyDay = (residence: Residence, checkinDate: Date, checkoutDate: Date): boolean => {
-    let hasBusyDays = false;
-    residence.busyDays.forEach(busyDate => {
-      if (busyDate.getTime() >= checkinDate.getTime() &&
-          busyDate.getTime() <= checkoutDate.getTime()) {
-        hasBusyDays = true;
-        return;
-      }
-    });
-    return hasBusyDays;
-  };
-
   const handleSubmit = () => {
     const list: Residence[] = filterAvailableResidences();
     setAvailableResList(list);
@@ -111,12 +99,12 @@ export const SearchPageContainer = () => {
     const checkoutDate = parseDate(checkoutDateText);
 
     return datasourceResidences.filter(
-      residence => !residence.purchased && residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
+      residence => residence.city == city && !containsBusyDay(residence, checkinDate, checkoutDate)
     );
   };
 
   const filterPurchasedResidences = (): Residence[] => {
-    return datasourceResidences.filter(residence => residence.purchased);
+    return datasourceResidences.filter(residence => hasBusyDates(residence));
   };
 
   return (
@@ -140,6 +128,8 @@ export const SearchPageContainer = () => {
       dirtyCheckin={dirtyCheckin}
       dirtyCheckout={dirtyCheckout}
       dirtyCity={dirtyCity}
+      startDate={parseDate(checkinDateText)}
+      endDate={parseDate(checkoutDateText)}
     />
   );
 };

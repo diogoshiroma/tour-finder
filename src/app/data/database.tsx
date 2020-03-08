@@ -7,14 +7,13 @@ export const getResidenceById = (id: number): Residence | null  => {
 }
 
 export const populateResidences = async () => {
-  const res: Residence[] = await getResidences();
-  datasourceResidences = res;
-  console.log(datasourceResidences);
-  if (datasourceResidences.length > 0) {
+  try {
+    datasourceResidences = await getResidences();
     console.log('Dados carregados corretamente: ' + datasourceResidences.length + ' carregadas.');
-  } else {
+  } catch (err) {
     datasourceResidences = placeholder;
     console.log('Usando placeholder');
+    console.log(err);
   }
 }
 
@@ -65,7 +64,18 @@ const placeholder: Residence[] = [
     bedroomName: "Quarto Duplo Standard",
     city: "São Paulo",
     availablePlaces: 2,
-    busyDays: [new Date('2020-02-19'), new Date('2020-02-20')],
+    busyDays: [new Date('2020-02-09'), new Date('2020-02-10')],
+    purchased: false,
+  },
+  {
+    id: 7,
+    hotel: "North Palace Hotel",
+    hotelId: 4,
+    address: "R. Santa Teresa de Jesus, 339 - Vila Santa Terezinha (Zona Norte)",
+    bedroomName: "Quarto Duplo Standard",
+    city: "São Paulo",
+    availablePlaces: 2,
+    busyDays: [new Date('2020-02-01'), new Date('2020-02-02')],
     purchased: false,
   },
 ];

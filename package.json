@@ -1,5 +1,5 @@
 {
-  "name": "travel-simple",
+  "name": "tour-finder",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,12 +10,12 @@
     "react-bootstrap": "1.0.0-beta.12",
     "react-dom": "16.9.0",
     "react-router-dom": "5.1.2",
-    "react-scripts": "3.1.1",
+    "react-scripts": "3.4.0",
     "styled-components": "4.4.0",
     "typedi": "0.8.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3012 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
