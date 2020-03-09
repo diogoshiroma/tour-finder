@@ -1,4 +1,4 @@
-# Travel Simple
+# Tour Finder
 
 ## Environment
 
@@ -7,7 +7,7 @@
 
 ## How to run
 
-Access `travel-simple` project directory from a terminal, run the command `npm install` in order to install the project dependencies. Next, run the command `npm start` and open the URL `http://localhost:3000` from a browser of your preference.
+Access `tour-finder` project directory from a terminal, run the command `npm install` in order to install the project dependencies. Next, run the command `npm start` and open the URL `http://localhost:3012` from a browser of your preference.
 
 ## Dependencies
 

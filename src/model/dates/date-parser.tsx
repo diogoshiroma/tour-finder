@@ -1,3 +1,5 @@
+const DELIMITER = ';';
+
 export const parseDate = (strDate: string): Date => {
   const day = strDate.substring(0, 2);
   const month = strDate.substring(3, 5);
@@ -12,4 +14,16 @@ export const matchShortDate = (strDate: string) => {
 
 export const isValidDate = (date: any) => {
   return !isNaN(date) && date instanceof Date;
-}
+};
+
+export const dateToString = (date: Date) => {
+  return date.toISOString().split('T')[0];
+};
+
+export const dateArrayToString = (dates: Date[]): string => {
+  return dates.map(date1 => dateToString(date1)).join(DELIMITER);
+};
+
+export const datesStringToArray = (datesStr: string): Date[] => {
+  return datesStr.split(DELIMITER).map(dateStr => new Date(dateStr));
+};

@@ -28,6 +28,8 @@ interface SearchPageInterface {
   dirtyCheckin: boolean;
   dirtyCheckout: boolean;
   dirtyCity: boolean;
+  startDate: Date;
+  endDate: Date;
 }
 
 export const SearchPage = (props: SearchPageInterface) => {
@@ -62,7 +64,7 @@ export const SearchPage = (props: SearchPageInterface) => {
         dirtyCity={props.dirtyCity}
       />
       {props.availableResidences.length > 0 ?
-          <ResidencesListComponent residences={props.availableResidences} />
+          <ResidencesListComponent residences={props.availableResidences} startDate={props.startDate} endDate={props.endDate} />
         :
           dirtyForm && (
             <>

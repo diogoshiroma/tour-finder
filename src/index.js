@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { TravelSimpleApp } from './app';
+import { TourFinderApp } from './app';
   
 ReactDOM.render(
-	<TravelSimpleApp />,
+	<TourFinderApp />,
 	document.getElementById('root'),
 );

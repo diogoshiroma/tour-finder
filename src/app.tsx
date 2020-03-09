@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { RoomDetailsPage } from './app/details/room-details.page';
 import { NotFoundComponent } from './app/not-found/not-found.component';
 
-export const TravelSimpleApp = () => {
+export const TourFinderApp = () => {
 	return (
 		<BrowserRouter>
 			<Container fluid={true}>

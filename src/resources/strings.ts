@@ -1,5 +1,5 @@
 export let Strings = {
-  AppName: 'Travel Simple',
+  AppName: 'Tour Finder',
   Components: {
     Residence: {
       AvailablePlaces: 'Vagas disponíveis: '
@@ -24,6 +24,7 @@ export let Strings = {
       Thanks: 'Obrigado!',
       AddToTour: 'Deseja adicionar essa hospedagem ao roteiro?',
       AddToTourBtn: 'Adicionar ao roteiro.',
+      OpenTravelTour: 'Abrir Travel Tour.',
     },
     Dialog: {
       Confirmation: {
@@ -32,9 +33,10 @@ export let Strings = {
         Cancel: 'Cancelar',
         Confirm: 'Confirmar',
       },
-      Done: {
+      Status: {
         Title: 'Confirmação',
-        Message: 'Compra efetuada com sucesso!',
+        MessageSuccess: 'Compra efetuada com sucesso!',
+        MessageFailPrefix: 'Falha na compra: ',
         Confirm: 'OK',
       },
     },
