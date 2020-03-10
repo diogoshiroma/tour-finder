@@ -17,6 +17,23 @@ export let Strings = {
         CheckoutDate: 'Informe a data de saída',
       },
     },
+    TourForm: {
+      City: 'Cidade',
+      Date: 'Data',
+      Submit: 'Buscar passeios!',
+      DateFormat: 'Formato: (DD/MM/AAAA)',
+      Placeholder: {
+        City: 'Informe a cidade de destino',
+        Date: 'Informe a data do passeio',
+        Type: 'Tipo de Passeio'
+      },
+      Types:{
+        Adventure: 'Aventura',
+        Culture: 'Cultural',
+        Nature: 'Natureza',
+      },
+
+    },
     ResidenceDetail: {
       AvailablePlacesLbl: 'Vagas disponíveis: ',
       BookNowYourRoom: 'Reserve agora o seu quarto: ',
@@ -46,6 +63,13 @@ export let Strings = {
   },
   Error: { 
     ResidencesForm: {
+      InvalidDateFormat: 'Formato de data incorreto',
+      NonExistingDate: 'Data não existente',
+      EmptyCity: 'Digite o nome da cidade',
+      CheckingAfterCheckout: 'A data de entrada deve ser anterior à data de saída',
+      NoResFound: 'Nenhum quarto encontrado! :-(',
+    },
+    TourForm: {
       InvalidDateFormat: 'Formato de data incorreto',
       NonExistingDate: 'Data não existente',
       EmptyCity: 'Digite o nome da cidade',

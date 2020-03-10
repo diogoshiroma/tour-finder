@@ -8,12 +8,15 @@ export enum DefaultColor {
   White = '#ffffff',
   Red = '#ff0000',
   Green = '#00ff00',
+  DarkGreen = '#28a745'
 };
 
 export class Color {
   public static readonly Primary = DefaultColor.DodgerBlue;
   public static readonly Secondary = DefaultColor.BlueJeans;
   public static readonly Alert = DefaultColor.Red;
+  public static readonly DarkGreen = DefaultColor.DarkGreen;
+  public static readonly White = DefaultColor.White;
 }
 
 export enum FontSize {

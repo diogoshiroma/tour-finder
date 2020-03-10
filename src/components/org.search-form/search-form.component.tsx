@@ -1,13 +1,15 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import { Strings } from '../../resources';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import { VSeparator } from '../atm.separators';
-import { FieldErrorMessage } from '../typography.style';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Dropdown from "react-bootstrap/Dropdown";
+import { Strings } from "../../resources";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import { VSeparator } from "../atm.separators";
+import { FieldErrorMessage } from "../typography.style";
 
 interface SearchFormInterface {
   onChangeCity: (event: any) => void;
@@ -36,18 +38,18 @@ export const SearchForm = (props: SearchFormInterface) => {
         <Row noGutters={true}>
           <Col sm={12}>
             <Form.Group controlId="formCity">
-              <Form.Label>{Strings.Components.ResidencesForm.City}</Form.Label>
+              <Form.Label>{Strings.Components.TourForm.City}</Form.Label>
               <Form.Control
                 type="input"
-                placeholder={Strings.Components.ResidencesForm.Placeholder.City}
+                placeholder={Strings.Components.TourForm.Placeholder.City}
                 onChange={props.onChangeCity}
                 onBlur={props.onBlurCity}
               />
-              {props.emptyCity && props.dirtyCity &&
+              {props.emptyCity && props.dirtyCity && (
                 <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.EmptyCity}
+                  {Strings.Error.TourForm.EmptyCity}
                 </FieldErrorMessage>
-              }
+              )}
             </Form.Group>
           </Col>
         </Row>
@@ -55,63 +57,59 @@ export const SearchForm = (props: SearchFormInterface) => {
         <Row noGutters={true}>
           <Col sm={5}>
             <Form.Group controlId="formCheckinDate">
-              <Form.Label>{Strings.Components.ResidencesForm.CheckinDate}</Form.Label>
+              <Form.Label>{Strings.Components.TourForm.Date}</Form.Label>
               <Form.Control
                 type="input"
-                placeholder={Strings.Components.ResidencesForm.Placeholder.CheckinDate}
+                placeholder={Strings.Components.TourForm.Placeholder.Date}
                 onChange={props.onChangeCheckinDate}
                 onBlur={props.onBlurCheckinDate}
               />
-              <Form.Text className="text-muted" style={{ fontStyle: 'italic' }}>
-                {Strings.Components.ResidencesForm.DateFormat}
+              <Form.Text className="text-muted" style={{ fontStyle: "italic" }}>
+                {Strings.Components.TourForm.DateFormat}
               </Form.Text>
-              {props.checkinInvalidDateFormat && props.dirtyCheckin &&
+              {props.checkinInvalidDateFormat && props.dirtyCheckin && (
                 <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.InvalidDateFormat}
+                  {Strings.Error.TourForm.InvalidDateFormat}
                 </FieldErrorMessage>
-              }
-              {props.checkinNonExistingDate && props.dirtyCheckin &&
+              )}
+              {props.checkinNonExistingDate && props.dirtyCheckin && (
                 <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.NonExistingDate}
+                  {Strings.Error.TourForm.NonExistingDate}
                 </FieldErrorMessage>
-              }
-              {props.checkinAfterCheckout &&
+              )}
+              {props.checkinAfterCheckout && (
                 <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.CheckingAfterCheckout}
+                  {Strings.Error.TourForm.CheckingAfterCheckout}
                 </FieldErrorMessage>
-              }
+              )}
             </Form.Group>
           </Col>
+
           <Col sm={{ span: 5, offset: 2 }}>
-            <Form.Group controlId="formCheckoutDate">
-              <Form.Label>{Strings.Components.ResidencesForm.CheckoutDate}</Form.Label>
-              <Form.Control
-                type="input"
-                placeholder={Strings.Components.ResidencesForm.Placeholder.CheckoutDate}
-                onChange={props.onChangeCheckoutDate}
-                onBlur={props.onBlurCheckoutDate}
-              />
-              <Form.Text className="text-muted" style={{ fontStyle: 'italic' }}>
-                {Strings.Components.ResidencesForm.DateFormat}
-              </Form.Text>
-              {props.checkoutInvalidDateFormat && props.dirtyCheckout &&
-                <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.InvalidDateFormat}
-                </FieldErrorMessage>
-              }
-              {props.checkoutNonExistingDate && props.dirtyCheckout &&
-                <FieldErrorMessage>
-                  {Strings.Error.ResidencesForm.NonExistingDate}
-                </FieldErrorMessage>
-              }
-            </Form.Group>
+            <div style={{ marginTop: "30px" }}>
+              <DropdownButton
+                id="dropdown-tour-type"
+                title={Strings.Components.TourForm.Placeholder.Type}
+                variant='success'
+              >
+                <Dropdown.Item href="#/action-1">{Strings.Components.TourForm.Types.Adventure}</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">{Strings.Components.TourForm.Types.Culture}</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">{Strings.Components.TourForm.Types.Nature}</Dropdown.Item>
+              </DropdownButton>
+            </div>
           </Col>
         </Row>
         <VSeparator half={true} />
         <Row noGutters={true}>
           <Col>
-            <Button disabled={props.disabled} variant="primary" onClick={props.onSubmit} block>
-              {Strings.Components.ResidencesForm.Submit}
+            <Button
+              disabled={props.disabled}
+              variant="success"
+              onClick={props.onSubmit}
+              block
+              style={{opacity:1}}
+            >
+              {Strings.Components.TourForm.Submit}
             </Button>
           </Col>
         </Row>
