@@ -119,14 +119,11 @@ export const SearchPageContainer = () => {
   }
 
   const handleSubmit = async () => {
-    // const list: Residence[] = filterAvailableResidences();
-    // setAvailableResList(list);
     const list: Tour[] = await getTours(
       city, checkinDateText, tourQuantity, tourType
     );
     setAvailableTours(list);
     console.log(list)
-    // console.log(city, checkinDateText, tourQuantity, tourType)
   };
 
   const filterAvailableResidences = (): Residence[] => {

@@ -9,6 +9,10 @@ const TRAVEL_SIMPLE_API_URL = 'http://localhost:8000';
 const TRAVEL_TOUR_API_URL = 'http://localhost:8006';
 const TOUR_FINDER_API_URL = 'http://localhost:8012';
 
+const BACKEND_TOUR_FINDER_URL = 'http://localhost:8000';
+
+let tour: Tour;
+
 export const getHosts = async (): Promise<Host[]> => {
   const url = `${TRAVEL_SIMPLE_API_URL}/api/hosts/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url);
@@ -16,7 +20,7 @@ export const getHosts = async (): Promise<Host[]> => {
 };
 
 export const getTours = async (city: string, date: string, quantity: number, type:string): Promise<Tour[]> => {
-  const url = `${TRAVEL_SIMPLE_API_URL}/api/tours/`;
+  const url = `${BACKEND_TOUR_FINDER_URL}/api/tours/`;
   const axiosResponse: AxiosResponse<any> = await axios.get(url, {
     params: {
       city: city,
@@ -27,6 +31,19 @@ export const getTours = async (city: string, date: string, quantity: number, typ
   });
   const toursData: TourData[] = parseToursArrayData(axiosResponse.data);
   return parseToursData(toursData);
+}
+
+export const populateTour = async (id: string) => {
+  const url = `${BACKEND_TOUR_FINDER_URL}/api/tours/${id}`;
+  const axiosResponse: AxiosResponse<any> = await axios.get(url);
+
+  const tourData: TourData = mapDataToTourData(axiosResponse.data);
+  tour = mapTourDataToTour(tourData);
+}
+
+export const getTour = (): Tour  => {
+
+  return tour;
 }
 
 const parseHostsArrayData = (hostsData: any): Host[] => {

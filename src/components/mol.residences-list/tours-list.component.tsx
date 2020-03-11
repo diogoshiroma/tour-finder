@@ -10,11 +10,11 @@ interface ToursListProps {
   tours: Tour[];
 }
 
-const RESIDENCES_PER_ROW = 4;
+const TOURS_PER_ROW = 4;
 
 export const ToursListComponent = (props: ToursListProps) => {
   const getQueryString = (tour: Tour) => {
-    const url = `/details?room=${tour.id}`;
+    const url = `/details?tour=${tour.id}`;
     return url;
   };
 
@@ -25,7 +25,7 @@ export const ToursListComponent = (props: ToursListProps) => {
         {props.tours.map((tour, index) => {
             const key: string = "" + index;
             return (
-              <Col md={12 / RESIDENCES_PER_ROW} key={key}>
+              <Col md={12 / TOURS_PER_ROW} key={key}>
                 <Link to={getQueryString(tour)} style={{textDecoration: "none"}}>
                   <TourCard tour={tour} />
                 </Link>

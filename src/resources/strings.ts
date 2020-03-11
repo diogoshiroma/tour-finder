@@ -48,6 +48,15 @@ export let Strings = {
       AddToTourBtn: 'Adicionar ao roteiro.',
       OpenTravelTour: 'Abrir Travel Tour.',
     },
+    TourDetail: {
+      AvailablePlacesLbl: 'Vagas disponíveis: ',
+      BookNowYourRoom: 'Compre agora seu passeio: ',
+      BuyRoom: 'Comprar',
+      Thanks: 'Obrigado!',
+      AddToTour: 'Deseja adicionar esse passeio ao roteiro?',
+      AddToTourBtn: 'Adicionar ao roteiro.',
+      OpenTravelTour: 'Abrir Travel Tour.',
+    },
     Dialog: {
       Confirmation: {
         Title: 'Confirmação',

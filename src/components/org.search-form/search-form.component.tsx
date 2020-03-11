@@ -109,7 +109,7 @@ export const SearchForm = (props: SearchFormInterface) => {
             variant="success"
             onSelect={props.onTypeSelect}
           >
-            <Dropdown.Item eventKey={"Aventura"}>
+            <Dropdown.Item eventKey={"adventure"}>
               {Strings.Components.TourForm.Types.Adventure}
             </Dropdown.Item>
             <Dropdown.Item eventKey={"culture"}>
