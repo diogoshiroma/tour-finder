@@ -14,7 +14,7 @@ const TOURS_PER_ROW = 4;
 
 export const ToursListComponent = (props: ToursListProps) => {
   const getQueryString = (tour: Tour) => {
-    const url = `/details?tour=${tour.id}`;
+    const url = `/details?id=${tour.id}&tour=${tour.tour}&city=${tour.city}&type=${tour.type}&meetingPoint=${tour.meetingPoint}&tickets=${tour.availableTickets}`;
     return url;
   };
 

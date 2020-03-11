@@ -7,8 +7,6 @@ import { TourDetails } from './tour-details.component';
 
 interface TourDetailsContainerProps {
   tour: Tour | null;
-  startDate?: Date;
-  endDate?: Date;
 }
 
 export const TourDetailsContainer = (props: TourDetailsContainerProps) => {
@@ -16,6 +14,19 @@ export const TourDetailsContainer = (props: TourDetailsContainerProps) => {
   const [showDialogBuyStatus, setShowDialogBuyStatus] = React.useState(false);
   const [textDialogBuyStatus, setTextDialogBuyStatus] = React.useState('');
   const [enableAddToTour, setEnableAddToTour] = React.useState(true);
+
+   // React.useEffect(() => {
+    //   if (!populatedResidences) {
+    //     setPopulatedResidences(true);
+    //     populateResidences().then(function resolve() {
+    //       const list = filterPurchasedResidences();
+    //       if (showPurchasedList) {
+    //         setPurchasedResList(list);
+    //         setShowPurchasedList(false);
+    //       }
+    //     });
+    //   }
+    // });
 
   const handleClickBuy = () => {
     setShowDialogBuyConfirmation(true);

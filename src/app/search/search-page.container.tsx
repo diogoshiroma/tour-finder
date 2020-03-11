@@ -29,18 +29,18 @@ export const SearchPageContainer = () => {
   const [dirtyCheckout, setDirtyCheckout] = React.useState(false);
   const [dirtyCity, setDirtyCity] = React.useState(false);
 
-    React.useEffect(() => {
-      if (!populatedResidences) {
-        setPopulatedResidences(true);
-        populateResidences().then(function resolve() {
-          const list = filterPurchasedResidences();
-          if (showPurchasedList) {
-            setPurchasedResList(list);
-            setShowPurchasedList(false);
-          }
-        });
-      }
-    });
+    // React.useEffect(() => {
+    //   if (!populatedResidences) {
+    //     setPopulatedResidences(true);
+    //     populateResidences().then(function resolve() {
+    //       const list = filterPurchasedResidences();
+    //       if (showPurchasedList) {
+    //         setPurchasedResList(list);
+    //         setShowPurchasedList(false);
+    //       }
+    //     });
+    //   }
+    // });
   
   const handleChangeCity = (event: any) => {
     setCity(event.target.value);
@@ -102,7 +102,6 @@ export const SearchPageContainer = () => {
   const handleTypeSelect = (event:any) => {
     setTourTypeTitle(handleTourTypeTitle(event));
     setTourType(event);
-    console.log(event);
   };
 
   const handleTourTypeTitle = (selected:string): string => {
@@ -120,7 +119,7 @@ export const SearchPageContainer = () => {
 
   const handleSubmit = async () => {
     const list: Tour[] = await getTours(
-      city, checkinDateText, tourQuantity, tourType
+      city, checkinDateText, tourQuantity, tourTypeTitle
     );
     setAvailableTours(list);
     console.log(list)

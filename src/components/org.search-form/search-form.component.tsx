@@ -70,7 +70,7 @@ export const SearchForm = (props: SearchFormInterface) => {
               <Form.Text className="text-muted" style={{ fontStyle: "italic" }}>
                 {Strings.Components.TourForm.DateFormat}
               </Form.Text>
-              {props.checkinInvalidDateFormat && props.dirtyCheckin && (
+              {/* {props.checkinInvalidDateFormat && props.dirtyCheckin && (
                 <FieldErrorMessage>
                   {Strings.Error.TourForm.InvalidDateFormat}
                 </FieldErrorMessage>
@@ -84,7 +84,7 @@ export const SearchForm = (props: SearchFormInterface) => {
                 <FieldErrorMessage>
                   {Strings.Error.TourForm.CheckingAfterCheckout}
                 </FieldErrorMessage>
-              )}
+              )} */}
             </Form.Group>
           </Col>
 
