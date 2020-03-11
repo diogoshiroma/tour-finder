@@ -4,6 +4,9 @@ export let Strings = {
     Residence: {
       AvailablePlaces: 'Vagas disponíveis: '
     },
+    Tour: {
+      Available: 'Vagas disponíveis: '
+    },
     ResidencesForm: {
       City: 'Cidade',
       CheckinDate: 'Data de entrada',
@@ -20,12 +23,14 @@ export let Strings = {
     TourForm: {
       City: 'Cidade',
       Date: 'Data',
+      Quantity: 'Quantidade',
       Submit: 'Buscar passeios!',
       DateFormat: 'Formato: (DD/MM/AAAA)',
       Placeholder: {
         City: 'Informe a cidade de destino',
         Date: 'Informe a data do passeio',
-        Type: 'Tipo de Passeio'
+        Type: 'Tipo de Passeio',
+        Quantity: 'Quantidade'
       },
       Types:{
         Adventure: 'Aventura',

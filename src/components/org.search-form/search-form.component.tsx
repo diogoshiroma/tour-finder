@@ -15,6 +15,8 @@ interface SearchFormInterface {
   onChangeCity: (event: any) => void;
   onChangeCheckinDate: (event: any) => void;
   onChangeCheckoutDate: (event: any) => void;
+  onChangeTourQuantity: (event: any) => void;
+  onTypeSelect: (event: any) => void;
   onBlurCheckinDate: () => void;
   onBlurCheckoutDate: () => void;
   onBlurCity: () => void;
@@ -29,6 +31,7 @@ interface SearchFormInterface {
   dirtyCheckin: boolean;
   dirtyCheckout: boolean;
   dirtyCity: boolean;
+  tourType: string;
 }
 
 export const SearchForm = (props: SearchFormInterface) => {
@@ -85,29 +88,48 @@ export const SearchForm = (props: SearchFormInterface) => {
             </Form.Group>
           </Col>
 
-          <Col sm={{ span: 5, offset: 2 }}>
-            <div style={{ marginTop: "30px" }}>
-              <DropdownButton
-                id="dropdown-tour-type"
-                title={Strings.Components.TourForm.Placeholder.Type}
-                variant='success'
-              >
-                <Dropdown.Item href="#/action-1">{Strings.Components.TourForm.Types.Adventure}</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">{Strings.Components.TourForm.Types.Culture}</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">{Strings.Components.TourForm.Types.Nature}</Dropdown.Item>
-              </DropdownButton>
+          <Col sm={{ span: 3, offset: 1 }}>
+            <Form.Group controlId="formQuantity">
+              <Form.Label>{Strings.Components.TourForm.Quantity}</Form.Label>
+              <Form.Control
+                type="input"
+                placeholder={Strings.Components.TourForm.Placeholder.Quantity}
+                onChange={props.onChangeTourQuantity}
+                // onBlur={props.onBlurCheckinDate}
+              />
+            </Form.Group>
+          </Col>
+
+          <Col sm={{ span: 2, offset: 1 }}>
+            <div style={{marginTop: '30px'}}>
             </div>
+          <DropdownButton
+            id="dropdown-tour-type"
+            title={props.tourType}
+            variant="success"
+            onSelect={props.onTypeSelect}
+          >
+            <Dropdown.Item eventKey={"Aventura"}>
+              {Strings.Components.TourForm.Types.Adventure}
+            </Dropdown.Item>
+            <Dropdown.Item eventKey={"culture"}>
+              {Strings.Components.TourForm.Types.Culture}
+            </Dropdown.Item>
+            <Dropdown.Item eventKey={"nature"}>
+              {Strings.Components.TourForm.Types.Nature}
+            </Dropdown.Item>
+          </DropdownButton>
           </Col>
         </Row>
         <VSeparator half={true} />
         <Row noGutters={true}>
           <Col>
             <Button
-              disabled={props.disabled}
+              // disabled={props.disabled}
               variant="success"
               onClick={props.onSubmit}
-              block
-              style={{opacity:1}}
+              // block
+              style={{ opacity: 1 }}
             >
               {Strings.Components.TourForm.Submit}
             </Button>

@@ -1,4 +1,4 @@
-import { Residence } from "../../model/entities";
+import { Residence, Tour } from "../../model/entities";
 import { getResidences } from "./requests";
 
 export const getResidenceById = (id: number): Residence | null  => {
@@ -17,7 +17,33 @@ export const populateResidences = async () => {
   }
 }
 
+export const populateTours = async () => {
+  try {
+    datasourceResidences = await getResidences();
+    console.log('Dados carregados corretamente: ' + datasourceResidences.length + ' carregadas.');
+  } catch (err) {
+    datasourceResidences = placeholder;
+    console.log('Usando placeholder');
+    console.log(err);
+  }
+}
+
 export let datasourceResidences: Residence[] = [];
+export let datasourceTours: Tour[] = [];
+
+const placeholderTour: Tour[] = [
+  // São Paulo
+  {
+    id: 1,
+    tour: "North Palace Hotel",
+    tourId: 1,
+    meetingPoint: "R. Santa Teresa de Jesus, 339 - Vila Santa Terezinha (Zona Norte)",
+    type: "Quarto Triplo Superior",
+    city: "São Paulo",
+    availableTickets: 5,
+    date: [new Date('2020-03-09')],
+  },
+];
 
 const placeholder: Residence[] = [
   // Campos do Jordão

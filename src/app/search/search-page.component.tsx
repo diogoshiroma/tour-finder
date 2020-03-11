@@ -1,22 +1,26 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Residence } from '../../model/entities';
+import { Residence, Tour } from '../../model/entities';
 import { ResidencesListComponent } from '../../components/mol.residences-list/residences-list.component';
 import { SearchForm } from '../../components/org.search-form';
 import { VSeparator } from '../../components/atm.separators';
 import { ErrorMessage, H2 } from '../../components/typography.style';
 import { Strings } from '../../resources';
 import { PageTitle } from '../../components/mol.page-title';
+import { ToursListComponent } from '../../components';
 
 interface SearchPageInterface {
   onChangeCity: (event: any) => void;
   onChangeCheckinDate: (event: any) => void;
   onChangeCheckoutDate: (event: any) => void;
+  onChangeTourQuantity: (event: any) => void;
+  onTypeSelect: (event:any) => void;
   onSubmit: () => void;
   onBlurCheckinDate: () => void;
   onBlurCheckoutDate: () => void;
   onBlurCity: () => void;
   availableResidences: Residence[];
+  availableTours: Tour[];
   purchasedResidences: Residence[];
   disabled: boolean;
   checkinInvalidDateFormat: boolean;
@@ -30,6 +34,7 @@ interface SearchPageInterface {
   dirtyCity: boolean;
   startDate: Date;
   endDate: Date;
+  tourType: string;
 }
 
 export const SearchPage = (props: SearchPageInterface) => {
@@ -52,6 +57,7 @@ export const SearchPage = (props: SearchPageInterface) => {
         onBlurCheckinDate={props.onBlurCheckinDate}
         onBlurCheckoutDate={props.onBlurCheckoutDate}
         onBlurCity={props.onBlurCity}
+        onTypeSelect={props.onTypeSelect}
         disabled={props.disabled}
         checkinInvalidDateFormat={props.checkinInvalidDateFormat}
         checkinNonExistingDate={props.checkinNonExistingDate}
@@ -62,9 +68,11 @@ export const SearchPage = (props: SearchPageInterface) => {
         dirtyCheckin={props.dirtyCheckin}
         dirtyCheckout={props.dirtyCheckout}
         dirtyCity={props.dirtyCity}
+        tourType={props.tourType}
+        onChangeTourQuantity={props.onChangeTourQuantity}
       />
-      {props.availableResidences.length > 0 ?
-          <ResidencesListComponent residences={props.availableResidences} startDate={props.startDate} endDate={props.endDate} />
+      {props.availableTours.length > 0 ?
+          <ToursListComponent tours={props.availableTours} />
         :
           dirtyForm && (
             <>
@@ -73,13 +81,13 @@ export const SearchPage = (props: SearchPageInterface) => {
             </>
           )
       }
-      {props.purchasedResidences.length > 0 &&
+      {/* {props.purchasedResidences.length > 0 &&
         <>
           <VSeparator />
           <H2>{Strings.Components.ResidencesForm.PurchasedResidences}</H2>
           <ResidencesListComponent residences={props.purchasedResidences} />
         </>
-      }
+      } */}
     </>
   );
 };

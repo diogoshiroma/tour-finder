@@ -1,8 +1,9 @@
 import React from 'react';
-import { Residence } from '../../model/entities';
+import { Residence, Tour } from '../../model/entities';
 import { SearchPage } from './search-page.component';
-import { datasourceResidences, populateResidences } from '../data';
+import { datasourceResidences, populateResidences, getTours } from '../data';
 import { parseDate, matchShortDate, isValidDate, hasBusyDates, containsBusyDay } from '../../model';
+import { Strings } from '../../resources';
 
 export const SearchPageContainer = () => {
   const [populatedResidences, setPopulatedResidences] = React.useState(false);
@@ -18,6 +19,11 @@ export const SearchPageContainer = () => {
   const [checkinNonExistingDate, setCheckinNonExistingDate] = React.useState(true);
   const [checkoutInvalidDateFormat, setCheckoutInvalidDateFormat] = React.useState(true);
   const [checkoutNonExistingDate, setCheckoutNonExistingDate] = React.useState(true);
+
+  const [tourQuantity, setTourQuantity] = React.useState(0);
+  const [availableTours, setAvailableTours] = React.useState<Tour[]>([]);
+  const [tourType, setTourType] = React.useState('');
+  const [tourTypeTitle, setTourTypeTitle] = React.useState(Strings.Components.TourForm.Placeholder.Type);
 
   const [dirtyCheckin, setDirtyCheckin] = React.useState(false);
   const [dirtyCheckout, setDirtyCheckout] = React.useState(false);
@@ -46,6 +52,10 @@ export const SearchPageContainer = () => {
 
   const handleChangeCheckoutDate = (event: any) => {
     setCheckoutDateText(event.target.value);
+  };
+
+  const handleChangeTourQuantity = (event: any) => {
+    setTourQuantity(event.target.value);
   };
 
   const handleBlurCheckinDate = () => {
@@ -89,9 +99,34 @@ export const SearchPageContainer = () => {
     );
   };
 
-  const handleSubmit = () => {
-    const list: Residence[] = filterAvailableResidences();
-    setAvailableResList(list);
+  const handleTypeSelect = (event:any) => {
+    setTourTypeTitle(handleTourTypeTitle(event));
+    setTourType(event);
+    console.log(event);
+  };
+
+  const handleTourTypeTitle = (selected:string): string => {
+    switch(selected){
+      case 'adventure':
+        return Strings.Components.TourForm.Types.Adventure
+      case 'culture':
+        return Strings.Components.TourForm.Types.Culture
+      case 'nature':
+        return Strings.Components.TourForm.Types.Nature
+      default:
+        return Strings.Components.TourForm.Placeholder.Type
+    }
+  }
+
+  const handleSubmit = async () => {
+    // const list: Residence[] = filterAvailableResidences();
+    // setAvailableResList(list);
+    const list: Tour[] = await getTours(
+      city, checkinDateText, tourQuantity, tourType
+    );
+    setAvailableTours(list);
+    console.log(list)
+    // console.log(city, checkinDateText, tourQuantity, tourType)
   };
 
   const filterAvailableResidences = (): Residence[] => {
@@ -112,6 +147,7 @@ export const SearchPageContainer = () => {
       onChangeCity={handleChangeCity}
       onChangeCheckinDate={handleChangeCheckinDate}
       onChangeCheckoutDate={handleChangeCheckoutDate}
+      onChangeTourQuantity={handleChangeTourQuantity}
       onSubmit={handleSubmit}
       onBlurCheckinDate={handleBlurCheckinDate}
       onBlurCheckoutDate={handleBlurCheckoutDate}
@@ -130,6 +166,9 @@ export const SearchPageContainer = () => {
       dirtyCity={dirtyCity}
       startDate={parseDate(checkinDateText)}
       endDate={parseDate(checkoutDateText)}
+      onTypeSelect={handleTypeSelect}
+      tourType={tourTypeTitle}
+      availableTours={availableTours}
     />
   );
 };

@@ -1,7 +1,8 @@
 import { Host, Bedroom } from "../model";
-import { Residence, dateToString, dateArrayToString } from "../../../model";
+import { Residence, dateToString, dateArrayToString, Tour } from "../../../model";
 import { BedroomData } from "../model/bedroomData";
 import { LodginEvent } from "../model/lodginEvent";
+import { TourData } from "../model/tourData";
 
 export const mapHostDataToHost = (hostData: any): Host => {
   return {
@@ -9,6 +10,32 @@ export const mapHostDataToHost = (hostData: any): Host => {
     name: hostData.name,
     address: hostData.address,
     city: hostData.city,
+  };
+};
+
+export const mapDataToTourData = (tourData: any): TourData => {
+  return {
+    id: tourData.pk,
+    tour: tourData.name,
+    tourId: tourData.tourId,
+    meetingPoint: tourData.meeting_point,
+    type: tourData.tour_type,
+    city: tourData.city,
+    availableTickets: tourData.available,
+    date: tourData.date,
+  };
+};
+
+export const mapTourDataToTour = (tourData: TourData): Tour => {
+  return {
+    id: tourData.id,
+    tour: tourData.tour,
+    tourId: tourData.tourId,
+    meetingPoint: tourData.meetingPoint,
+    type: tourData.type,
+    city: tourData.city,
+    availableTickets: tourData.availableTickets,
+    date: tourData.date,
   };
 };
 
